@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>clicker</title>
+        <title>clicker-project</title>
         <style>
             body {
                 background-color: #ffffff;
@@ -70,6 +70,23 @@
             });
             document.addEventListener('wheel', (event) => {
                 if (event.wheelDeltaY > 0) swipe_action(active_item);
+            });
+
+            //touch
+            yStart = null;
+            document.addEventListener('touchstart', (event) => {
+                yStart = event.touches[0].clientY;
+            });
+            yEnd = null;
+            document.addEventListener('touchmove', (event) => {
+                yEnd = event.touches[0].clientY;
+            });
+            document.addEventListener('touchend', (event) => {
+                if (yStart && yEnd && yStart - yEnd > 0) {
+                    swipe_action(active_item);
+                }
+                yStart = null;
+                yEnd = null;
             });
         </script>
     </body>
