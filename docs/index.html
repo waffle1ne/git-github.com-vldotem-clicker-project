@@ -65,8 +65,9 @@
         <script>
             active_item = document.getElementById('active-item');
             document.addEventListener('click', (event) => {
-                if (event.currentTarget.activeElement === document.body)
-                    click_action(active_item);
+                if (event.target === document.getElementById('theme-btn'))
+                    return;
+                click_action(active_item);
             });
             document.addEventListener('wheel', (event) => {
                 if (event.wheelDeltaY > 0) swipe_action(active_item);
