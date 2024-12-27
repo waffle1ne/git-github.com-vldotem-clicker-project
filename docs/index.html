@@ -4,91 +4,28 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>clicker-project</title>
-        <style>
-            body {
-                background-color: #ffffff;
-            }
-
-            .playground {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            #active-item {
-                cursor: pointer;
-                width: 100px;
-                height: 100px;
-                background-color: #c65555d2;
-                /* background-color: #55c691d2; */
-            }
-        </style>
+        <link rel="stylesheet" href="style/main.css" />
+        <link rel="stylesheet" href="style/action-item.css" />
     </head>
     <body>
-        <button id="theme-btn" onclick="theme_switch()">theme switch</button>
+        <button
+            id="theme-btn"
+            onclick="theme_switch()"
+            style="user-select: none"
+        >
+            theme switch
+        </button>
         <div class="playground">
-            <div id="active-item"></div>
+            <div id="action-item">
+                <div class="stages">
+                    <img src="src/part1.png" />
+                    <img src="src/part2.png" />
+                    <img src="src/part3.png" />
+                    <img src="src/part4.png" />
+                </div>
+            </div>
         </div>
-        <script>
-            function theme_switch() {
-                btn = document.getElementById('theme-btn');
-                if (btn.theme === undefined || btn.theme === 'light') {
-                    btn.theme = 'dark';
-                    document.body.style.backgroundColor = '#343434';
-                } else {
-                    btn.theme = 'light';
-                    document.body.style.backgroundColor = '#ffffff';
-                }
-            }
-        </script>
-        <script>
-            function click_action(item) {
-                //click active-item and make an action
-                if (item.status === 'done') return;
-                item.style.backgroundColor = '#55c691d2';
-                item.status = 'done';
-            }
-
-            function swipe_action(item) {
-                //swipe and refresh, or change active-item
-                if (item.status === 'undone') return;
-                item.style.backgroundColor = '#c65555d2';
-                item.status = 'undone';
-            }
-
-            function new_active_item() {}
-
-            function remove_active_item() {}
-        </script>
-        <script>
-            active_item = document.getElementById('active-item');
-            document.addEventListener('click', (event) => {
-                if (event.target === document.getElementById('theme-btn'))
-                    return;
-                click_action(active_item);
-            });
-            document.addEventListener('wheel', (event) => {
-                if (event.wheelDeltaY > 0) swipe_action(active_item);
-            });
-
-            //touch
-            yStart = null;
-            document.addEventListener('touchstart', (event) => {
-                yStart = event.touches[0].clientY;
-            });
-            yEnd = null;
-            document.addEventListener('touchmove', (event) => {
-                yEnd = event.touches[0].clientY;
-            });
-            document.addEventListener('touchend', (event) => {
-                if (yStart && yEnd && yStart - yEnd > 0) {
-                    swipe_action(active_item);
-                }
-                yStart = null;
-                yEnd = null;
-            });
-        </script>
+        <script src="script/theme.js"></script>
+        <script src="script/action.js"></script>
     </body>
 </html>
