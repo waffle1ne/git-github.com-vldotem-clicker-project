@@ -1,25 +1,20 @@
-#action-item {
+.action-item {
     display: flex;
+    justify-content: center;
     cursor: pointer;
-    /* background-color: #c65555d2; */
-    /* background-color: #55c691d2; */
 }
 
-#action-item .stages {
-    display: flex;
+.action-item .stages {
     position: relative;
-    left: -135px;
+    left: -10%;
 }
 
-#action-item .stages img {
-    max-width: 270px;
-    height: auto;
+.action-item .stages img {
     position: absolute;
 }
 
 .shake {
-    animation: shake 0.1s;
-
+    animation: shake 100ms;
     /* When the animation is finished, start again */
     animation-iteration-count: infinite;
 }
@@ -57,5 +52,19 @@
     }
     100% {
         transform: translate(1px, -2px) rotate(-1deg);
+    }
+}
+
+.rightSlide {
+    animation: rightSlide 100ms ease-in forwards;
+}
+
+@keyframes rightSlide {
+    from {
+        transform: translateX(+50%);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
